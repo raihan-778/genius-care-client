@@ -1,7 +1,6 @@
-import Root from "../../Layouts/Root";
-import Home from "../../Pages/Home/Home";
-
-const { createBrowserRouter } = require("react-router-dom");
+import { createBrowserRouter } from "react-router-dom"
+import Root from "../../Layouts/Root"
+import Home from "../../Pages/Home/Home/Home"
 
 const router = createBrowserRouter([
   {
@@ -14,6 +13,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+])
 
-export default router;
+export default router
