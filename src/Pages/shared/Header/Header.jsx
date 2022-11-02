@@ -1,6 +1,6 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import logo from "./../../../assets/icons/logo.svg"
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "./../../../assets/icons/logo.svg";
 
 const Header = () => {
   const menuItems = (
@@ -9,9 +9,9 @@ const Header = () => {
         <Link to="/">Home</Link>
       </li>
     </>
-  )
+  );
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar mb-12 pt-12 bg-base-100">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -48,7 +48,7 @@ const Header = () => {
         <a className="btn  btn-warning">Appointment</a>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
