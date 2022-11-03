@@ -1,10 +1,10 @@
-import React from "react";
-import person from "../../../assets/images/about_us/person.jpg";
-import parts from "../../../assets/images/about_us/parts.jpg";
+import React from "react"
+import person from "../../../assets/images/about_us/person.jpg"
+import parts from "../../../assets/images/about_us/parts.jpg"
 
 const About = () => {
   return (
-    <div className="hero min-h-screen my-20 bg-base-200">
+    <div className="hero  my-20 bg-base-200">
       <div className="hero-content flex-col lg:flex-row">
         <div className="w-1/2 relative">
           <img
@@ -17,7 +17,7 @@ const About = () => {
           />
         </div>
 
-        <div className="w-1/2">
+        <div className="w-1/2 my-5">
           <p className="text-2xl text-orange-600 font-bold">About Us</p>
           <p className="py-6">
             There are many variations of passages of Lorem Ipsum available, but
@@ -34,7 +34,7 @@ const About = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default About;
+export default About
