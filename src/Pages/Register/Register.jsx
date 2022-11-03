@@ -2,29 +2,42 @@ import React from "react";
 import { Link } from "react-router-dom";
 import login from "../../assets/images/login/login.svg";
 
-const Login = () => {
-  const handleLogin = (e) => {
-    const form = e.target;
+const Register = () => {
+  const handleRegister = (event) => {
+    const form = event.target;
   };
-
   return (
     <div>
       <div className="hero w-full bg-base-200">
-        <div className="hero-content grid md:grid-cols-2 p-5 md:mx-auto flex-col lg:flex-row">
-          <div className="text-center py-5 lg:text-left">
-            <img className="w-3/4" src={login} alt="" />
+        <div className="hero-content grid md:grid-cols-2 flex-col lg:flex-row">
+          <div className="text-center lg:text-left">
+            <h1 className="text-5xl font-bold">Login now!</h1>
+            <img src={login} alt="" />
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form onSubmit={handleLogin} className="card-body">
+            <form onSubmit={handleRegister} className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Full Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Enter Your Name"
+                  className="input input-bordered"
+                  required
+                />
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   name="email"
                   placeholder="Enter Your email"
                   className="input input-bordered"
+                  required
                 />
               </div>
               <div className="form-control">
@@ -36,11 +49,12 @@ const Login = () => {
                   name="password"
                   placeholder="Enter password"
                   className="input input-bordered"
+                  required
                 />
                 <label className="label">
-                  Dont,have an account? Please
-                  <Link className="text-orange-600" to="/register">
-                    register Now
+                  Already have an account? Please
+                  <Link className="text-orange-600" to="/login">
+                    Login
                   </Link>
                 </label>
               </div>
@@ -48,7 +62,7 @@ const Login = () => {
                 <input
                   type="submit"
                   className="btn btn-primary"
-                  value="login"
+                  value="Register"
                 />
               </div>
             </form>
@@ -59,4 +73,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
