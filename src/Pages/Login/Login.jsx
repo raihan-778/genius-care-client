@@ -1,22 +1,26 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import login from "../../assets/images/login/login.svg";
-import { AuthContext } from "../../context/AuthProvider/AuthProvider";
+import React, { useContext } from "react"
+import { Link } from "react-router-dom"
+import login from "../../assets/images/login/login.svg"
+import { AuthContext } from "../../context/AuthProvider/AuthProvider"
 
 const Login = () => {
-  const { user, userLogin } = useContext(AuthContext);
+  const { user, userLogin } = useContext(AuthContext)
   const handleLogin = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
+    e.preventDefault()
+    const form = e.target
+    const email = form.email.value
+    const password = form.password.value
 
     userLogin(email, password)
       .then((result) => {
-        console.log(result.user);
+        console.log(result.user)
+        if (user.uid) {
+          alert("Log in successfully")
+          form.reset()
+        }
       })
-      .catch((err) => console.error(err));
-  };
+      .catch((err) => console.error(err))
+  }
 
   return (
     <div>
@@ -67,7 +71,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

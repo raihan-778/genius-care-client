@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
 const ServiceCard = ({ service }) => {
-  const { title, price, _id, img, description } = service;
-  console.log(service);
+  const { title, price, _id, img, description } = service
+
   return (
     <div>
       <div className="card w-80 bg-base-100 shadow-xl">
@@ -20,13 +20,13 @@ const ServiceCard = ({ service }) => {
           <div className="card-actions justify-end">
             <p className="text-orange-600 font-semibold">Price: {price}</p>
             <button className="btn btn-primary">
-              <Link to={`/checkout/${_id}`}>Buy Now</Link>
+              <Link to={`/checkout/${_id}`}>CHECKOUT</Link>
             </button>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ServiceCard;
+export default ServiceCard

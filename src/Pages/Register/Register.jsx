@@ -1,23 +1,27 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import login from "../../assets/images/login/login.svg";
-import { AuthContext } from "../../context/AuthProvider/AuthProvider";
+import React, { useContext } from "react"
+import { Link } from "react-router-dom"
+import login from "../../assets/images/login/login.svg"
+import { AuthContext } from "../../context/AuthProvider/AuthProvider"
 
 const Register = () => {
-  const { user, userSignUp } = useContext(AuthContext);
+  const { user, userSignUp } = useContext(AuthContext)
   const handleRegister = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(email, password);
+    event.preventDefault()
+    const form = event.target
+    const email = form.email.value
+    const password = form.password.value
+    console.log(email, password)
 
     userSignUp(email, password)
       .then((result) => {
-        console.log(result.user);
+        console.log(result.user)
+        if (user?.email) {
+          alert("You have successfully registered")
+          form.reset()
+        }
       })
-      .catch((err) => console.error(err));
-  };
+      .catch((err) => console.error(err))
+  }
   return (
     <div>
       <div className="hero w-full bg-base-200">
@@ -82,7 +86,7 @@ const Register = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

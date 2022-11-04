@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
-import ServiceCard from "./ServiceCard";
+import React, { useEffect, useState } from "react"
+import ServiceCard from "./ServiceCard"
 
 const Services = () => {
-  const [carServices, setCarServices] = useState([]);
+  const [carServices, setCarServices] = useState([])
 
   useEffect(() => {
     fetch("http://localhost:5000/services")
       .then((response) => response.json())
       .then((data) => {
-        setCarServices(data);
-      });
-  }, []);
+        setCarServices(data)
+      })
+  }, [])
 
-  console.log(carServices);
   return (
     <div>
       <div className="text-center">
@@ -29,7 +28,7 @@ const Services = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Services;
+export default Services
