@@ -1,32 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
 
-const OrderRow = ({ order }) => {
-  const [orderService, setOrderService] = useState({});
-  const { serveceName, service, price, message, customer } = order;
-  console.log(order);
+const OrderRow = ({ order, handleDelet }) => {
+  const [orderService, setOrderService] = useState({})
+  const { serveceName, sevice, _id, price, message, customer } = order
 
   useEffect(() => {
-    fetch(`http://localhost:5000/services/${service}`)
+    fetch(`http://localhost:5000/services/${sevice}`)
       .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, [service]);
+      .then((data) => {
+        setOrderService(data)
+      })
+  }, [sevice])
 
   return (
     <div>
       <tr>
         <th>
           <label>
-            <button className="btn btn-ghost">X</button>
+            <button onClick={() => handleDelet(_id)} className="btn btn-ghost">
+              X
+            </button>
           </label>
         </th>
         <td>
           <div className="flex items-center space-x-3">
             <div className="avatar">
               <div className="w-24 rounded">
-                {console.log(orderService)}
                 {orderService?.img && (
                   <img
-                    src={orderService?.img}
+                    src={orderService.img}
                     alt="Avatar Tailwind CSS Component"
                   />
                 )}
@@ -51,7 +53,7 @@ const OrderRow = ({ order }) => {
         </th>
       </tr>
     </div>
-  );
-};
+  )
+}
 
-export default OrderRow;
+export default OrderRow

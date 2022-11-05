@@ -1,16 +1,38 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import logo from "./../../../assets/icons/logo.svg";
+import React, { useContext } from "react"
+import { Link } from "react-router-dom"
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider"
+import logo from "./../../../assets/icons/logo.svg"
 
 const Header = () => {
+  const { user, userSignout } = useContext(AuthContext)
+
+  const handleSignout = () => {
+    userSignout()
+      .then(() => {})
+      .catch((err) => {
+        console.error(err)
+      })
+  }
+
   const menuItems = (
     <>
       <li className="semi-bold">
         <Link to="/">Home</Link>
-        <Link to="/login">Login</Link>
+        {user?.email ? (
+          <>
+            <Link to="/orders">Orders</Link>
+            <button onClick={handleSignout} className="btn btn-primary">
+              SignOut
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login">Login</Link>
+          </>
+        )}
       </li>
     </>
-  );
+  )
   return (
     <div className="navbar mb-12 pt-12 bg-base-100">
       <div className="navbar-start">
@@ -49,7 +71,7 @@ const Header = () => {
         <a className="btn  btn-warning">Appointment</a>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

@@ -5,6 +5,7 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth"
 
 export const auth = getAuth(app)
@@ -14,24 +15,39 @@ const AuthProvider = ({ children }) => {
   const [loader, setLoader] = useState(true)
 
   const userSignUp = (email, password) => {
+    setLoader(true)
     return createUserWithEmailAndPassword(auth, email, password)
   }
 
   const userLogin = (email, password) => {
+    setLoader(true)
     return signInWithEmailAndPassword(auth, email, password)
+  }
+
+  const userSignout = () => {
+    return signOut(auth)
   }
 
   useEffect(() => {
     const endObservation = onAuthStateChanged(auth, (currentUser) => {
       console.log(currentUser)
       setUser(currentUser)
+      setLoader(false)
     })
     return () => {
       endObservation()
     }
   }, [])
 
-  const authInfo = { user, userSignUp, userLogin, setUser, loader, setLoader }
+  const authInfo = {
+    user,
+    userSignout,
+    userSignUp,
+    userLogin,
+    setUser,
+    loader,
+    setLoader,
+  }
 
   return (
     <div>

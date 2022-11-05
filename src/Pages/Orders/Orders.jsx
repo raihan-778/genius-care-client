@@ -1,18 +1,37 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../context/AuthProvider/AuthProvider";
-import OrderRow from "./OrderRow";
+import React, { useContext, useEffect, useState } from "react"
+import { AuthContext } from "../../context/AuthProvider/AuthProvider"
+import OrderRow from "./OrderRow"
 
 const Orders = () => {
-  const { user } = useContext(AuthContext);
-  const [orders, setOrders] = useState([]);
-  console.log(user?.email);
-  console.log(orders);
+  const { user } = useContext(AuthContext)
+  const [orders, setOrders] = useState([])
+  console.log(user?.email)
+  console.log(orders)
 
   useEffect(() => {
     fetch(`http://localhost:5000/orders?email=${user?.email}`)
       .then((res) => res.json())
-      .then((data) => setOrders(data));
-  }, [user?.email]);
+      .then((data) => setOrders(data))
+  }, [user?.email])
+
+  const handleDelet = (id) => {
+    const proceed = window.confirm(
+      "Are you sure you want to candel this order?"
+    )
+    if (proceed) {
+      fetch(`http://localhost:5000/orders/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            alert("Deleted Successfully")
+            const remaining = orders.filter((odr) => odr._id !== id)
+            setOrders(remaining)
+          }
+        })
+    }
+  }
 
   return (
     <div>
@@ -36,13 +55,17 @@ const Orders = () => {
           <tbody>
             {console.log(orders)}
             {orders?.map((order) => (
-              <OrderRow key={order?._id} order={order}></OrderRow>
+              <OrderRow
+                handleDelet={handleDelet}
+                key={order?._id}
+                order={order}
+              ></OrderRow>
             ))}
           </tbody>
         </table>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Orders;
+export default Orders
