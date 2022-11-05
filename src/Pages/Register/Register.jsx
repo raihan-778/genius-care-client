@@ -15,7 +15,7 @@ const Register = () => {
     userSignUp(email, password)
       .then((result) => {
         console.log(result.user)
-        if (user?.email) {
+        if (user?.uid) {
           alert("You have successfully registered")
           form.reset()
         }
