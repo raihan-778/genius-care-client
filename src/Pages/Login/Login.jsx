@@ -35,16 +35,14 @@ const Login = () => {
           .then((res) => res.json())
           .then((data) => {
             console.log(data)
+            //local storage is the easiest but not best place to save jwt token.
             localStorage.setItem("genious-Token", data.token)
+            if (user.uid) {
+              alert("Log in successfully")
+              form.reset()
+            }
+            navigate(from, { replace: true })
           })
-
-        //local storage is the easiest but not best place to save jwt token.
-
-        if (user.uid) {
-          alert("Log in successfully")
-          navigate(from, { replace: true })
-          form.reset()
-        }
       })
       .catch((err) => console.error(err))
   }
